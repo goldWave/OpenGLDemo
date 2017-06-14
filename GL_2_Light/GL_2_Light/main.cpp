@@ -71,8 +71,8 @@ int main(int argc, const char * argv[]) {
     glEnable(GL_DEPTH_TEST);
     
 //    // Build and compile our shader program
-    Shader  lampShader("/Users/naver/Documents/mac OS X/openGL/GL_2_Light/GL_2_Light/lamp.vs", "/Users/naver/Documents/mac OS X/openGL/GL_2_Light/GL_2_Light/lamp.fs");
-    Shader  lightingShader("/Users/naver/Documents/mac OS X/openGL/GL_2_Light/GL_2_Light/light.vs", "/Users/naver/Documents/mac OS X/openGL/GL_2_Light/GL_2_Light/light.fs");
+    Shader  lampShader("/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/lamp.vs", "/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/lamp.fs");
+    Shader  lightingShader("/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/light.vs", "/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/light.fs");
     
     GLfloat vertices[] = {
         -0.5f, -0.5f, -0.5f,
