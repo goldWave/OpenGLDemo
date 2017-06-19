@@ -1,0 +1,8 @@
+.DS_Store
+*.DS_Store
+xcuserdata
+ *.xcuserdatad
+
+GL_1_Start/.DS_Store
+GL_2_Light/.DS_Store
+GL_2_Light/GL_2_Light.xcodeproj/project.xcworkspace/xcuserdata
