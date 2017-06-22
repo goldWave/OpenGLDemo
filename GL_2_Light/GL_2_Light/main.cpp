@@ -24,13 +24,14 @@ void do_movement();
 const GLuint S_WIDTH = 1100, S_HEIGHT = 700;
 
 // Camera
-Camera  camera(glm::vec3(1.3f, 0.8f, 3.5f));
+Camera  camera(glm::vec3(0.9f, 1.3f, 3.5f));
 GLfloat lastX  =  S_WIDTH  / 2.0;
 GLfloat lastY  =  S_HEIGHT / 2.0;
 bool    keys[1024];
 
 //light
-glm::vec3 lightPos(1.2f, 1.f, 2.f);
+glm::vec3 lightPos(-.0f, -0.4f, 1.3f);
+glm::vec3 lambPos(-0.4f, 1.8f, 2.f);
 // Deltatime
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
@@ -159,10 +160,29 @@ int main(int argc, const char * argv[]) {
         lightingShader.Use();
         
         lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
         lightingShader.setVec3("lightPos", lightPos);
         lightingShader.setVec3("viewPos", camera.Position);
-        printf("%.2f,,,,,%.2f \n",deltaTime,camera.Position.x);
+        
+        lightingShader.setVec3("material.ambient", 1.f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.diffuse", 1.f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        lightingShader.setFloat("material.shininess", 32.f);
+        
+        
+        
+        glm::vec3 lightColor;
+        lightColor.x = sinf(currentFrame * 2.f);
+        lightColor.y = sinf(currentFrame * 0.7f);
+        lightColor.z = sinf(currentFrame * 1.3f);
+        
+        glm::vec3 diffuseColor = lightColor * glm::vec3(.5f); //降低影响
+        glm::vec3 ambientColor = diffuseColor * glm::vec3(.2f); //很低影响
+        
+        lightingShader.setVec3("light.ambient", ambientColor);
+        lightingShader.setVec3("light.diffuse", diffuseColor);
+        lightingShader.setVec3("light.specular", 1.f, 1.f, 1.f);
+        
+
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)S_WIDTH / (float)S_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
@@ -183,7 +203,7 @@ int main(int argc, const char * argv[]) {
         lampShader.setMat4("projection", projection);
         lampShader.setMat4("view", view);
         model = glm::mat4();
-        model = glm::translate(model, lightPos);
+        model = glm::translate(model, lambPos);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lampShader.setMat4("model", model);
         glBindVertexArray(0);
