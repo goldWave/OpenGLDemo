@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A747A851EFB73EB00101FA6 /* container2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A747A841EFB73EB00101FA6 /* container2.png */; };
+		4A747A881EFB94A700101FA6 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A747A871EFB94A700101FA6 /* stb_image.cpp */; };
+		4A747A991EFBAD7B00101FA6 /* container2_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A747A981EFBAD7B00101FA6 /* container2_specular.png */; };
 		4A8705381EF0E67200DE36F0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A8705371EF0E67200DE36F0 /* main.cpp */; };
 		4A87053D1EF0E67200DE36F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A87053C1EF0E67200DE36F0 /* Assets.xcassets */; };
 		4A87054A1EF0E69D00DE36F0 /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8705481EF0E69D00DE36F0 /* libGLEW.2.0.0.dylib */; };
@@ -18,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A747A841EFB73EB00101FA6 /* container2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container2.png; sourceTree = "<group>"; };
+		4A747A861EFB94A700101FA6 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		4A747A871EFB94A700101FA6 /* stb_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
+		4A747A981EFBAD7B00101FA6 /* container2_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container2_specular.png; sourceTree = "<group>"; };
 		4A8705301EF0E67200DE36F0 /* GL_2_Light.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GL_2_Light.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8705371EF0E67200DE36F0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4A87053C1EF0E67200DE36F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +98,8 @@
 		4A8705361EF0E67200DE36F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A747A841EFB73EB00101FA6 /* container2.png */,
+				4A747A981EFBAD7B00101FA6 /* container2_specular.png */,
 				4A8706CC1EF0E88B00DE36F0 /* Shader.h */,
 				4A8706CE1EF1066E00DE36F0 /* Camera.h */,
 			);
@@ -111,6 +120,8 @@
 		4A8705501EF0E6E100DE36F0 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				4A747A861EFB94A700101FA6 /* stb_image.h */,
+				4A747A871EFB94A700101FA6 /* stb_image.cpp */,
 				4A8706521EF0E6E200DE36F0 /* SOIL */,
 			);
 			path = include;
@@ -188,7 +199,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8706CB1EF0E86300DE36F0 /* lamp.fs in Resources */,
+				4A747A991EFBAD7B00101FA6 /* container2_specular.png in Resources */,
 				4A87053D1EF0E67200DE36F0 /* Assets.xcassets in Resources */,
+				4A747A851EFB73EB00101FA6 /* container2.png in Resources */,
 				4A8706CA1EF0E86300DE36F0 /* lamp.vs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8705381EF0E67200DE36F0 /* main.cpp in Sources */,
+				4A747A881EFB94A700101FA6 /* stb_image.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
