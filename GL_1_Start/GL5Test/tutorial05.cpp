@@ -75,7 +75,7 @@ int main()
     glEnable(GL_DEPTH_TEST);
     
     // Build and compile our shader program
-   Shader  ourShader("/Users/naver/Documents/mac\ OS\ X/openGL/GL5Test/GL5Test/shader.vs", "/Users/naver/Documents/mac\ OS\ X/openGL/GL5Test/GL5Test/shader.frag");
+    Shader  ourShader("/Users/naver/Documents/mac\ OS\ X/openGL/GL5Test/GL5Test/shader.vs", "/Users/naver/Documents/mac\ OS\ X/openGL/GL5Test/GL5Test/shader.frag");
     
     
     // Set up vertex data (and buffer(s)) and attribute pointers
@@ -134,9 +134,9 @@ int main()
         glm::vec3( 1.3f, -2.0f, -2.5f),
         glm::vec3( 1.5f,  2.0f, -2.5f),
         glm::vec3( 1.5f,  0.2f, -1.5f),
-        glm::vec3(-1.3f,  1.0f, -1.5f)  
+        glm::vec3(-1.3f,  1.0f, -1.5f)
     };
-
+    
     GLuint VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -145,12 +145,12 @@ int main()
     
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
+    
     
     // Position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
-
+    
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
     
@@ -169,7 +169,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // Load image, create texture and generate mipmaps
-//    int width, height;
+    //    int width, height;
     unsigned char* image1 = SOIL_load_image("container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image1);
     glGenerateMipmap(GL_TEXTURE_2D);
@@ -191,7 +191,7 @@ int main()
     glGenerateMipmap(GL_TEXTURE_2D);
     SOIL_free_image_data(image2);
     glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
-
+    
     // Game loop
     while (!glfwWindowShouldClose(window))
     {
@@ -199,14 +199,14 @@ int main()
         deltaTime = currentFrame - lastFrame;
         lastFrame = deltaTime;
         
-     // Check and call events
+        // Check and call events
         glfwPollEvents();
         do_movement();
         
         // Clear the colorbuffer
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        
         // Activate shader
         ourShader.Use();
         
@@ -217,9 +217,9 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
         glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 1);
-    
+        
         // Create transformations
-   glm::mat4 view;
+        glm::mat4 view;
         view = camera.GetViewMatrix();
         glm::mat4 projection;
         projection = glm::perspective(glm::radians(camera.Zoom), (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 1000.0f);
@@ -266,13 +266,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             keys[key] = false;
         }
     }
-
+    
 }
 
 void do_movement() {
     // 摄像机控制
     if(keys[GLFW_KEY_UP])
-         camera.ProcessKeyboard(FORWARD, deltaTime);
+        camera.ProcessKeyboard(FORWARD, deltaTime);
     if(keys[GLFW_KEY_DOWN])
         camera.ProcessKeyboard(BACKWARD, deltaTime);
     if(keys[GLFW_KEY_LEFT])
@@ -283,7 +283,7 @@ void do_movement() {
 
 bool firstMouse = true;
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
-
+    
     if(firstMouse)
     {
         lastX = xpos;

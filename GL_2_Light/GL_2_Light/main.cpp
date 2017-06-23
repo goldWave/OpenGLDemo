@@ -121,10 +121,24 @@ int main(int argc, const char * argv[]) {
         -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
     };
     
+    // positions all containers
+    glm::vec3 cubePositions[] = {
+        glm::vec3( 0.0f,  0.0f,  -1.0f),
+        glm::vec3( 2.0f,  5.0f, -15.0f),
+        glm::vec3(-1.5f, -2.2f, -2.5f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3( 2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.7f,  3.0f, -7.5f),
+        glm::vec3( 1.3f, -2.0f, -2.5f),
+        glm::vec3( 1.5f,  2.0f, -2.5f),
+        glm::vec3( 1.5f,  0.2f, -1.5f),
+        glm::vec3(-1.3f,  1.0f, -1.5f)
+    };
+    
     GLuint VBO, cubeVAO;
     glGenVertexArrays(1, &cubeVAO);
     glGenBuffers(1, &VBO);
-
+    
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
@@ -138,11 +152,11 @@ int main(int argc, const char * argv[]) {
     
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(6 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
-//    glBindVertexArray(0);
+    //    glBindVertexArray(0);
     
     //load and create texture
     GLuint diffuseMap = loadTexture("/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/container2.png");
-     GLuint diffuseMap1 = loadTexture("/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/container2_specular.png");
+    GLuint diffuseMap1 = loadTexture("/Users/naver/Documents/mac OS X/openGL/GLDemo/GL_2_Light/GL_2_Light/container2_specular.png");
     //light
     GLuint lightVAO;
     glGenVertexArrays(1, &lightVAO);
@@ -166,20 +180,32 @@ int main(int argc, const char * argv[]) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         lightingShader.Use();
-        lightingShader.setVec3("light.position", lightPos);
+//        lightingShader.setVec3("light.position", lightPos);
+        //        lightingShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
+        
+        lightingShader.setVec3("light.position",  camera.Position);
+        lightingShader.setVec3("light.direction", camera.Front);
+        lightingShader.setFloat("light.cutOff",   glm::cos(glm::radians(12.5f)));
+        lightingShader.setFloat("light.outerCutOff", glm::cos(glm::radians(17.5f)));
         lightingShader.setVec3("viewPos", camera.Position);
         
-//        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
-        lightingShader.setFloat("material.shininess", 64.f);
-//        lightingShader.setInt("material.diffuse", 0);
-//        lightingShader.setInt("material.specular", 1);
+        lightingShader.setVec3("viewPos", camera.Position);
         
-//        lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
-//        lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
-//        lightingShader.setVec3("light.specular", 1.f, 1.f, 1.f);
+        //        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        lightingShader.setFloat("material.shininess", 64.f);
+        //        lightingShader.setInt("material.diffuse", 0);
+        //        lightingShader.setInt("material.specular", 1);
+        
+        //        lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+        //        lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+        //        lightingShader.setVec3("light.specular", 1.f, 1.f, 1.f);
         lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+        
+        lightingShader.setFloat("light.constant",  1.0f);
+        lightingShader.setFloat("light.linear",    0.09f);
+        lightingShader.setFloat("light.quadratic", 0.032f);
         
         
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)S_WIDTH / (float)S_HEIGHT, 0.1f, 100.0f);
@@ -187,10 +213,7 @@ int main(int argc, const char * argv[]) {
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
         
-        // world transformation
-        glm::mat4 model;
-        lightingShader.setMat4("model", model);
-        
+     
         //texture
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
@@ -198,13 +221,29 @@ int main(int argc, const char * argv[]) {
         glBindTexture(GL_TEXTURE_2D, diffuseMap1);
         // render the cube
         glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //        glBindVertexArray(0);
+        
+        
+        for(unsigned int i = 0; i < 10; i++)
+        {
+            glm::mat4 model;
+            model = glm::translate(model, cubePositions[i]);
+            float angle = 20.0f * i;
+            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+            lightingShader.setMat4("model", model);
+            
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+            
+        }
         glBindVertexArray(0);
+        
         
         // Also draw the lamp object
         lampShader.Use();
         lampShader.setMat4("projection", projection);
         lampShader.setMat4("view", view);
+        glm::mat4 model;
         model = glm::mat4();
         model = glm::translate(model, lambPos);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
