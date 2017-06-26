@@ -23,7 +23,7 @@ struct Light {
     
 };
 
-out vec4 color;
+out vec4 FragColor;
 
 in vec3 FragPos;
 in vec3 Normal;
@@ -57,7 +57,7 @@ void main()
     // spotlight (soft edges)
     float theta = dot(lightDir, normalize(-light.direction));
     float epsilon = light.cutOff - light.outerCutOff;
-    float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.f, 1.f)
+    float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.f, 1.f);
     diffuse  *= intensity;
     specular *= intensity;
     
@@ -72,10 +72,10 @@ void main()
 //    if (theta > light.cutOff) {
 //        //执行光照
 //        vec3 result = ambient + diffuse + specular;
-//        color = vec4(result, 1.f);
+//        FragColor = vec4(result, 1.f);
 //    } else // 否则，使用环境光，让场景在聚光之外时不至于完全黑暗
-//        color = vec4(light.ambient * vec3(texture(material.diffuse, TexCoords)), 1.f);
+//        FragColor = vec4(light.ambient * vec3(texture(material.diffuse, TexCoords)), 1.f);
 //    
     vec3 result = ambient + diffuse + specular;
-    color = vec4(result, 1.f);
+    FragColor = vec4(result, 1.f);
 }
