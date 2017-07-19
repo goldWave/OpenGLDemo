@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "98795286859FA7C062F3E626EF3E8F69F1FAFDFA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "98795286859FA7C062F3E626EF3E8F69F1FAFDFA" : 9223372036854775807,
+    "EEE13627B8B9107F73B201AFE77B62682D445D8E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1173D977-3432-4D89-BDBA-B5B1900A3F9B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "98795286859FA7C062F3E626EF3E8F69F1FAFDFA" : "GLDemo\/",
+    "EEE13627B8B9107F73B201AFE77B62682D445D8E" : "cocoaOpenGL\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GL_3_Model",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GL_3_Model\/GL_3_Model.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/goldWave\/OpenGLDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "98795286859FA7C062F3E626EF3E8F69F1FAFDFA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/goldWave\/cocoaOpenGL.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EEE13627B8B9107F73B201AFE77B62682D445D8E"
+    }
+  ]
+}
